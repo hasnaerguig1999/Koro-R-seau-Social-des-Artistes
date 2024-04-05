@@ -13,7 +13,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-           
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('location')->nullable();
+            $table->enum('user_type', ['AUDITEUR', 'ARTIST', 'PRODUCTEUR', 'EVENEMENT']);
+            $table->boolean('is_ghost_mode')->default(false);
+            $table->json('favourites')->nullable();
+            $table->json('follows')->nullable();
+            $table->json('blocked')->nullable();
+            $table->enum('subscription_type', ['AbonementEnum'])->nullable();
+            $table->json('linked_accounts')->nullable();
+            $table->enum('artist_type', ['CHANTEUR', 'MUSICIEN', 'BEATMAKER', 'DJ', 'GROUP'])->nullable();
+            $table->enum('producer_type', ['STUDIO', 'CLIPPEUR', 'LABEL', 'SALLE'])->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
