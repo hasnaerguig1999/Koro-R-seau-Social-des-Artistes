@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\commentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,10 @@ Route::middleware('api')->group(function () {
     Route::get('/posts/{id}', [PostController::class, 'show']);
     Route::put('/posts/{id}', [PostController::class, 'update']);
     Route::delete('/posts/{id}', [PostController::class, 'destroy']);
+
+    Route::get('/comments', [commentController::class, 'index']);
+    Route::post('/comments', [commentController::class, 'store']);
+    Route::get('/comments/{id}', [commentController::class, 'show']);
+    Route::put('/comments/{id}', [commentController::class, 'update']);
+    Route::delete('/comments/{id}', [commentController::class, 'destroy']);
 });
